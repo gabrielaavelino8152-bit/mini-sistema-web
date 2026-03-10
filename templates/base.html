@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>{% block title %}Mini Sistema Flask{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('user.index') }}">Inicio</a>
+        <a href="{{ url_for('user.register') }}">Registro</a>
+        <a href="{{ url_for('user.login') }}">Login</a>
+    </nav>
+    <div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message|capitalize }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    {% block content %}{% endblock %}
+</body>
+</html>
+
